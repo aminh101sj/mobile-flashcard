@@ -11,9 +11,12 @@ class AddDeck extends React.Component {
   }
 
   add = () => {
+    this.setState({ title: '' });
+    this.refs['textInput'].setNativeProps({text: ''});
     saveDeckTitle(this.state.title);
     this.props.dispatch(addDeck(this.state.title));
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('DeckDetail',
+      { id: this.state.title, title: this.state.title });
   }
 
   render() {
@@ -22,6 +25,7 @@ class AddDeck extends React.Component {
         <Text>What is the title of your new deck?</Text>
         <View style={styles.row}>
           <TextInput placeholder="Deck Title"
+            ref="textInput"
             onChangeText={(title) => this.setState({title})}
             style={styles.input} 
           />

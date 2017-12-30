@@ -21,7 +21,6 @@ class AddCard extends React.Component {
   }
 
   render() {
-    console.log('here: ', this.props.navigation.state.params);
     return (
       <View style={styles.container}>
         <View style={styles.row}>

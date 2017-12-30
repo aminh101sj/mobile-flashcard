@@ -17,7 +17,6 @@ function Deck ({ title, questions, index }) {
 class Decks extends React.Component {
   componentDidMount() {
     getDecks().then((data) => {
-      console.log('the datazz: ', data);
       this.props.dispatch(initDecks(data));
     });
   }

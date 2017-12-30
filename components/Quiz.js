@@ -12,6 +12,10 @@ class Quiz extends React.Component {
     done: false,
   }
 
+  restart = () => {
+    this.setState({ count: 0, index: 0, reveal: false, done: false });
+  }
+
   reveal = () => {
     this.setState({ reveal: true });
   }
@@ -52,7 +56,6 @@ class Quiz extends React.Component {
     const deck = decks[id];
     const length = deck.questions.length;
     const card = length ? deck.questions[this.state.index] : {};
-    console.log("the decks: ", id, decks);
     const total = length ? count/length : 1;
     return (
       <View style={styles.wrapper}>
@@ -61,6 +64,11 @@ class Quiz extends React.Component {
             <Text>Results </Text>
             <Text>Correct: {count}/{length}</Text> 
             <Text>Score: {total * 100}%</Text> 
+            <Button title='Restart Quiz' backgroundColor='#8bc151'
+              onPress={this.restart}
+              style={styles.button} />
+            <Button title='Go Back' backgroundColor='red'
+              onPress={() => this.props.navigation.goBack()}/>
           </View>
         ) :
         (<View style={styles.wrapper}>
